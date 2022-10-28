@@ -1,0 +1,70 @@
+﻿@using Hunger.Data.Models
+@using Hunger.Data
+@inject RestaurantService RestaurantService
+
+<div class="row">
+    <div class="col-md-6">
+        <ul class="list-group">
+            @foreach (var restaurant in _restaurants)
+            {
+                <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                    @onclick="() => _selectedRestaurant = restaurant">
+                    @restaurant?.Name
+                    @if (restaurant?.Type != null)
+                    {
+                        <span class="badge rounded-pill bg-primary">
+                            @string.Join(',', restaurant.Type)
+                        </span>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+    @if (_selectedRestaurant != null)
+    {
+        <div class="col-md-6">
+            <h3>@_selectedRestaurant.Name</h3>
+            <span class="badge rounded-pill bg-primary">@string.Join(',', _selectedRestaurant.Type)</span>
+            @if (_selectedRestaurant.Details.HasVegetarianDishes)
+            {
+                <span class="badge rounded-pill bg-success">Vegetarian</span>
+            }
+            <br/><br/>
+            <p>Address: @_selectedRestaurant.Details.Address</p>
+
+            <h4>Signature Dishes</h4>
+            <br/>
+            <ul class="list-group list-group-flush">
+                @foreach (var dish in _selectedRestaurant.Details.SignatureDishes)
+                {
+                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        @dish.Name
+                        <div>
+
+
+                            @if (dish.IsVegetarian)
+                            {
+                                <span class="badge rounded-pill bg-success">Vegetarian</span>
+                            }
+                            <span class="badge rounded-pill bg-dark">@dish.Price €</span>
+                        </div>
+                    </li>
+                }
+            </ul>
+
+        </div>
+    }
+
+</div>
+
+
+@code
+{
+    private IEnumerable<Restaurant?> _restaurants = new List<Restaurant?>();
+    private Restaurant? _selectedRestaurant = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _restaurants = await RestaurantService.GetAllRestaurants();
+    }
+}

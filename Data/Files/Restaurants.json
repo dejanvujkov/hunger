@@ -1,0 +1,111 @@
+[
+  {
+    "name": "Green Thai",
+    "type": ["Thai"],
+    "details":
+    {
+      "address": "Aliseplatz 1",
+      "signatureDishes":
+      [
+        {
+          "name": "Nudle",
+          "price": 10,
+          "isVegetarian": true
+        },
+        {
+          "name": "Nudle",
+          "price": 10,
+          "isVegetarian": true
+        },
+        {
+          "name": "Nudle",
+          "price": 10,
+          "isVegetarian": true
+        },
+        {
+          "name": "Nudle",
+          "price": 10,
+          "isVegetarian": true
+        }
+      ]
+    }
+  },
+  {
+    "name": "Asian Flavors",
+    "type": ["Kinezi"],
+    "details":
+    {
+      "address": "Aliseplatz 1",
+      "signatureDishes":
+      [
+        {
+          "name": "Nudle",
+          "price": 10,
+          "isVegetarian": true
+        },
+        {
+          "name": "Nudle",
+          "price": 10,
+          "isVegetarian": true
+        },
+        {
+          "name": "Nudle",
+          "price": 10,
+          "isVegetarian": true
+        },
+        {
+          "name": "Nudle",
+          "price": 10,
+          "isVegetarian": true
+        }
+      ]
+    }
+  },
+  {
+    "name": "2 Hands Full",
+    "type": ["Burger"],
+    "details":
+    {
+      "address": "Aliseplatz 1",
+      "signatureDishes":
+      [
+        {
+          "name": "Nudle",
+          "price": 10,
+          "isVegetarian": false
+        },
+        {
+          "name": "Nudle",
+          "price": 10,
+          "isVegetarian": true
+        }
+      ]
+    }
+  },
+  {
+    "name": "Komsa",
+    "type": ["Doner"],
+    "details":
+    {
+      "address": "Aliseplatz 1",
+      "signatureDishes":
+      [
+        {
+          "name": "Nudle",
+          "price": 10,
+          "isVegetarian": false
+        },
+        {
+          "name": "Nudle",
+          "price": 10,
+          "isVegetarian": false
+        },
+        {
+          "name": "Nudle",
+          "price": 10,
+          "isVegetarian": false
+        }
+      ]
+    }
+  }
+]
