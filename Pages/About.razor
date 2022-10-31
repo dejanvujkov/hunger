@@ -1,0 +1,32 @@
+﻿@page "/about"
+@using Hunger.Data
+@inject RepositoryInformation RepositoryInformation
+
+<div class="card text-center">
+    <div class="card-header">
+        About the project
+    </div>
+    <div class="card-body">
+        <p class="card-text">This is a free and open source project and code can be found <a href="@_git + '.git'" target="_blank">here</a></p>
+    </div>
+    <div class="card-footer text-muted">
+        Powered by <a href="https://dotnet.microsoft.com/en-us/download/dotnet/6.0" target="_blank">.NET @Environment.Version</a> 
+        at <a href="@_git/commit/@_fullCommitLength" target="_blank">@_latestCommitId</a>
+    </div>
+</div>
+
+
+@code {
+    private string _git = string.Empty; 
+    private string? _latestCommitId = string.Empty;
+    private string _fullCommitLength = string.Empty;
+
+    protected override Task OnInitializedAsync()
+    {
+        _git = $"{RepositoryInformation.GitUrl}";
+        _fullCommitLength = RepositoryInformation.GetLatestMasterCommitId();
+        _latestCommitId = _fullCommitLength[..7];
+        return Task.CompletedTask;
+    }
+    
+}

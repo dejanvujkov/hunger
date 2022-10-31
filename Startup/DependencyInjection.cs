@@ -9,5 +9,6 @@ public static class DependencyInjection
         services.AddRazorPages();
         services.AddServerSideBlazor();
         services.AddSingleton<RestaurantService>();
+        services.AddSingleton<RepositoryInformation>();
     }
 }
