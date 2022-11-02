@@ -5,12 +5,19 @@ namespace Hunger.Data;
 
 public class RestaurantService
 {
-    public async Task<IEnumerable<Restaurant?>> GetAllRestaurants()
+    public async Task<IEnumerable<Restaurant?>?> GetAllRestaurants()
     {
         return await ReadRestaurantFile();
     }
 
-    private Task<IEnumerable<Restaurant?>> ReadRestaurantFile()
+    public async Task<Restaurant?> GetRandomRestaurant()
+    {
+        var allRestaurants = await ReadRestaurantFile();
+        var restaurants = allRestaurants as Restaurant[] ?? allRestaurants.ToArray();
+        return restaurants.ElementAtOrDefault(Random.Shared.Next(restaurants.Length));
+    }
+
+    private Task<IEnumerable<Restaurant>> ReadRestaurantFile()
     {
         var path = Path.Combine(Directory.GetCurrentDirectory(), "Data", "Files", "Restaurants.json");
         if (!File.Exists(path)) return Task.FromResult<IEnumerable<Restaurant>>(new List<Restaurant>());

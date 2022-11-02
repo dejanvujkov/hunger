@@ -5,84 +5,66 @@
 <div class="row">
     <div class="col-md-6">
         <ul class="list-group">
-            @foreach (var restaurant in _restaurants)
+            @if (Restaurants.Any())
             {
-                @if (_selectedRestaurant == restaurant)
+                @foreach (var restaurant in Restaurants)
                 {
-                    <li class="list-group-item list-group-item-action active d-flex justify-content-between align-items-center"
-                        @onclick="() => _selectedRestaurant = restaurant">
-                        @restaurant?.Name
-                        @if (restaurant?.Type != null)
-                        {
-                            <span class="badge rounded-pill bg-primary">
-                                @string.Join(',', restaurant.Type)
-                            </span>
-                        }
-                    </li>
+                    @if (SelectedRestaurant == restaurant)
+                    {
+                        <li class="list-group-item list-group-item-action active d-flex justify-content-between align-items-center"
+                            @onclick="() => SelectedRestaurant = restaurant">
+                            @restaurant?.Name
+                            @if (restaurant?.Type != null)
+                            {
+                                <div>
+                                    @foreach (var type in restaurant.Type)
+                                    {
+                                        <span class="badge rounded-pill bg-primary">
+                                            @type
+                                        </span>
+                                    }
+                                </div>
+                            }
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                            @onclick="() => SelectedRestaurant = restaurant">
+                            @restaurant?.Name
+                            @if (restaurant?.Type != null)
+                            {
+                                <div>
+                                    @foreach (var type in restaurant.Type)
+                                    {
+                                        <span class="badge rounded-pill bg-primary">
+                                            @type
+                                        </span>
+                                    }
+                                </div>
+                            }
+                        </li>
+                    }
                 }
-                else
-                {
-                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                        @onclick="() => _selectedRestaurant = restaurant">
-                        @restaurant?.Name
-                        @if (restaurant?.Type != null)
-                        {
-                            <span class="badge rounded-pill bg-primary">
-                                @string.Join(',', restaurant.Type)
-                            </span>
-                        }
-                    </li>
-                }
-                
             }
         </ul>
     </div>
-    @if (_selectedRestaurant != null)
+    @if (SelectedRestaurant != null)
     {
         <div class="col-md-6">
-            <h3>@_selectedRestaurant.Name</h3>
-            <span class="badge rounded-pill bg-primary">@string.Join(',', _selectedRestaurant.Type)</span>
-            @if (_selectedRestaurant.Details.HasVegetarianDishes)
-            {
-                <span class="badge rounded-pill bg-success">Vegetarian</span>
-            }
-            <br/><br/>
-            <p>Address: @_selectedRestaurant.Details.Address</p>
-
-            <h4>Signature Dishes</h4>
-            <br/>
-            <ul class="list-group list-group-flush">
-                @foreach (var dish in _selectedRestaurant.Details.SignatureDishes)
-                {
-                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                        @dish.Name
-                        <div>
-
-
-                            @if (dish.IsVegetarian)
-                            {
-                                <span class="badge rounded-pill bg-success">Vegetarian</span>
-                            }
-                            <span class="badge rounded-pill bg-dark">@dish.Price €</span>
-                        </div>
-                    </li>
-                }
-            </ul>
-
+            <RestaurantDetails SelectedRestaurant="SelectedRestaurant"></RestaurantDetails>
         </div>
     }
-
 </div>
-
 
 @code
 {
-    private IEnumerable<Restaurant?> _restaurants = new List<Restaurant?>();
-    private Restaurant? _selectedRestaurant = null;
+    private IEnumerable<Restaurant?>? Restaurants { get; set; }
+    private Restaurant? SelectedRestaurant { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        _restaurants = await RestaurantService.GetAllRestaurants();
-        _selectedRestaurant = _restaurants.FirstOrDefault();
+        Restaurants = await RestaurantService.GetAllRestaurants();
+        if (Restaurants != null) SelectedRestaurant = Restaurants.FirstOrDefault();
     }
 }

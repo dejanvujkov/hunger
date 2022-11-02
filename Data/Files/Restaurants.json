@@ -84,7 +84,7 @@
   },
   {
     "name": "Komsa",
-    "type": ["Doner"],
+    "type": ["Doner", "Pasta"],
     "details":
     {
       "address": "Aliseplatz 1",

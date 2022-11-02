@@ -1,0 +1,25 @@
+﻿@page "/random"
+@using Hunger.Data
+@using Hunger.Data.Models
+@inject RestaurantService RestaurantService
+
+<h3>Don't wanna choose? Then hit generate button!</h3>
+<br/>
+<button class="btn btn-primary" @onclick="Generate">Generate</button>
+@if (_selected != null)
+{
+    <hr/>
+    <div class="col-md-6">
+        <RestaurantDetails SelectedRestaurant="_selected"></RestaurantDetails>
+    </div>
+}
+
+@code {
+    private Restaurant? _selected;
+
+    private async Task Generate()
+    {
+        _selected = await RestaurantService.GetRandomRestaurant();
+    }
+
+}
