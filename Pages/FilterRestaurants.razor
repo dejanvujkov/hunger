@@ -1,0 +1,82 @@
+﻿@page "/filter"
+
+@using Hunger.Data.Models
+@using Hunger.Data
+@inject RestaurantService RestaurantService
+
+<h3>Filter Restaurants</h3>
+
+@if (Restaurants != null && Restaurants.Any())
+{
+    <div class="row">
+        <div class="col-md-6">
+            <ul class="list-group">
+                @if (DistinctRestaurantTypes != null && DistinctRestaurantTypes.Any())
+                {
+                    foreach (var type in DistinctRestaurantTypes)
+                    {
+                        if (SelectedType == type)
+                        {
+                            <li class="list-group-item list-group-item-action active d-flex justify-content-between align-items-center"
+                                @onclick="() => ChangeType(type, true)">
+                                @type
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                                @onclick="() => ChangeType(type)">
+                                @type
+                            </li>
+                        }
+                    }
+                }
+
+            </ul>
+        </div>
+        <div class="col-md-6">
+            @if (FilteredRestaurants != null && FilteredRestaurants.Any())
+            {
+                foreach (var restaurant in FilteredRestaurants)
+                {
+                    <RestaurantDetails SelectedRestaurant="restaurant"></RestaurantDetails>
+                    <hr/>
+                }
+            }
+        </div>
+    </div>
+    
+}
+
+@code {
+    private IEnumerable<Restaurant?>? Restaurants { get; set; }
+    private IEnumerable<Restaurant?>? FilteredRestaurants { get; set; }
+    private HashSet<string>? DistinctRestaurantTypes { get; set; }
+    private string? SelectedType { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Restaurants = await RestaurantService.GetAllRestaurants();
+        FilteredRestaurants = new List<Restaurant?>();
+        DistinctRestaurantTypes = new HashSet<string>();
+
+        if (Restaurants != null)
+        {
+            foreach (var restaurant in Restaurants)
+            {
+                if (restaurant?.Type == null) continue;
+                foreach (var type in restaurant.Type)
+                {
+                    DistinctRestaurantTypes.Add(type);
+                }
+            }
+        }
+    }
+
+    private async Task ChangeType(string? newType, bool setToNull = false)
+    {
+        SelectedType = setToNull ? null : newType;
+        FilteredRestaurants = await RestaurantService.GetRestaurantByType(SelectedType);
+    }
+
+}

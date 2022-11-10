@@ -32,7 +32,7 @@
   },
   {
     "name": "Asian Flavors",
-    "type": ["Kinezi"],
+    "type": ["Kinezi", "Pasta"],
     "details":
     {
       "address": "Aliseplatz 1",

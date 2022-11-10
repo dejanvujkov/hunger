@@ -17,6 +17,12 @@ public class RestaurantService
         return restaurants.ElementAtOrDefault(Random.Shared.Next(restaurants.Length));
     }
 
+    public async Task<IEnumerable<Restaurant?>?> GetRestaurantByType(string? type)
+    {
+        var restaurants = await ReadRestaurantFile();
+        return string.IsNullOrEmpty(type) ? null : restaurants.Where(r => r.Type != null && r.Type.Contains(type));
+    }
+
     private Task<IEnumerable<Restaurant>> ReadRestaurantFile()
     {
         var path = Path.Combine(Directory.GetCurrentDirectory(), "Data", "Files", "Restaurants.json");
@@ -25,6 +31,6 @@ public class RestaurantService
         var json = File.ReadAllText(path);
         var restaurants = JsonConvert.DeserializeObject<IEnumerable<Restaurant>>(json);
         
-        return Task.FromResult(restaurants ?? throw new InvalidOperationException());
+        return Task.FromResult(restaurants ?? new List<Restaurant>());
     }
 }
