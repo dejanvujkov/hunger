@@ -1,6 +1,4 @@
-﻿using LibGit2Sharp;
-
-namespace Hunger.Data;
+﻿namespace Hunger.Data;
 
 public class RepositoryInformation : IDisposable
 {

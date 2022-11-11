@@ -1,6 +1,4 @@
 ﻿@page "/random"
-@using Hunger.Data
-@using Hunger.Data.Models
 @inject RestaurantService RestaurantService
 
 <h3>Don't wanna choose? Then hit generate button!</h3>
@@ -21,5 +19,4 @@
     {
         _selected = await RestaurantService.GetRandomRestaurant();
     }
-
 }

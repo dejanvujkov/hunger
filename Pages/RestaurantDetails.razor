@@ -1,34 +1,36 @@
-﻿@using Hunger.Data.Models
-
-@if (SelectedRestaurant != null)
+﻿@if (SelectedRestaurant != null)
 {
     <h3>@SelectedRestaurant?.Name</h3>
 
-@if (SelectedRestaurant?.Type?.Count > 0)
-{
-    <div>
-        @foreach (var type in SelectedRestaurant.Type)
-        {
-            <span class="badge rounded-pill bg-primary">@type</span>
-        }
-    </div>
-}
+    @if (SelectedRestaurant?.Type?.Count > 0)
+    {
+        <div>
+            @foreach (var type in SelectedRestaurant.Type)
+            {
+                <span class="badge rounded-pill bg-primary">@type</span>
+            }
+        </div>
+    }
 
-@if (SelectedRestaurant.Details.HasVegetarianDishes)
-{
-    <span class="badge rounded-pill bg-success">Vegetarian</span>
-}
-    <br/><br/>
-    
-    <p>Address: @SelectedRestaurant.Details.Address</p>
+    @if (SelectedRestaurant != null && SelectedRestaurant.Details.HasVegetarianDishes)
+    {
+        <span class="badge rounded-pill bg-success">Vegetarian</span>
+    }
+    <br />
+    <br />
+
+    <p>Address: <strong>@SelectedRestaurant!.Details.Address</strong></p>
 
     <h4>Signature Dishes</h4>
-    <br/>
-    <ul class="list-group list-group-flush">
+    <br />
+    <ul class="list-group">
         @foreach (var dish in SelectedRestaurant.Details.SignatureDishes)
         {
-            <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                @dish.Name
+            <li class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">@dish.Name</h5>
+                </div>
+
                 <div>
                     @if (dish.IsVegetarian)
                     {
@@ -36,6 +38,7 @@
                     }
                     <span class="badge rounded-pill bg-dark">@dish.Price €</span>
                 </div>
+                <p class="mb-1">@dish.Description</p>
             </li>
         }
     </ul>

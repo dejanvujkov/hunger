@@ -1,6 +1,4 @@
-﻿using Hunger.Data;
-
-namespace Hunger.Startup;
+﻿namespace Hunger.Startup;
 
 public static class DependencyInjection
 {

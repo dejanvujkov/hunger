@@ -1,7 +1,4 @@
-﻿using Hunger.Data.Models;
-using Newtonsoft.Json;
-
-namespace Hunger.Data;
+﻿namespace Hunger.Data;
 
 public class RestaurantService
 {

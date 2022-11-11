@@ -1,11 +1,9 @@
-﻿@using Hunger.Data.Models
-@using Hunger.Data
-@inject RestaurantService RestaurantService
+﻿@inject RestaurantService RestaurantService
 
 <div class="row">
     <div class="col-md-6">
         <ul class="list-group">
-            @if (Restaurants.Any())
+            @if (Restaurants != null && Restaurants.Any())
             {
                 @foreach (var restaurant in Restaurants)
                 {

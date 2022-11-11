@@ -10,22 +10,26 @@
         {
           "name": "Nudle",
           "price": 10,
-          "isVegetarian": true
+          "isVegetarian": true,
+          "description": "Some note" 
         },
         {
           "name": "Nudle",
           "price": 10,
-          "isVegetarian": true
+          "isVegetarian": true,
+          "description": "Some note"
         },
         {
           "name": "Nudle",
           "price": 10,
-          "isVegetarian": true
+          "isVegetarian": true,
+          "description": "Some note"
         },
         {
           "name": "Nudle",
           "price": 10,
-          "isVegetarian": true
+          "isVegetarian": true,
+          "description": "Some note"
         }
       ]
     }
@@ -41,22 +45,26 @@
         {
           "name": "Nudle",
           "price": 10,
-          "isVegetarian": true
+          "isVegetarian": true,
+          "description": "Some note"
         },
         {
           "name": "Nudle",
           "price": 10,
-          "isVegetarian": true
+          "isVegetarian": true,
+          "description": "Some note"
         },
         {
           "name": "Nudle",
           "price": 10,
-          "isVegetarian": true
+          "isVegetarian": true,
+          "description": "Some note"
         },
         {
           "name": "Nudle",
           "price": 10,
-          "isVegetarian": true
+          "isVegetarian": true,
+          "description": "Some note"
         }
       ]
     }
@@ -72,12 +80,14 @@
         {
           "name": "Nudle",
           "price": 10,
-          "isVegetarian": false
+          "isVegetarian": false,
+          "description": "Some note"
         },
         {
           "name": "Nudle",
           "price": 10,
-          "isVegetarian": true
+          "isVegetarian": true,
+          "description": "Some note"
         }
       ]
     }
@@ -93,17 +103,20 @@
         {
           "name": "Nudle",
           "price": 10,
-          "isVegetarian": false
+          "isVegetarian": false,
+          "description": "Some note"
         },
         {
           "name": "Nudle",
           "price": 10,
-          "isVegetarian": false
+          "isVegetarian": false,
+          "description": "Some note"
         },
         {
           "name": "Nudle",
           "price": 10,
-          "isVegetarian": false
+          "isVegetarian": false,
+          "description": "Some note"
         }
       ]
     }
